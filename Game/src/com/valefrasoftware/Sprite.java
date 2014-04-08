@@ -14,7 +14,7 @@ import java.util.Random;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
- 
+ //esta es la modificacion
 public class Sprite {
        // direction = 0 up, 1 left, 2 down, 3 right,
        // animation = 3 back, 1 left, 0 front, 2 right
