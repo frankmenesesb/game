@@ -44,6 +44,8 @@ public class GameView extends SurfaceView {
        private int contador=0;
        private int xBoton=10;
        private int yBoton=10;
+       private int xFondo=0;
+       private int yFondo=0;
       
        public GameView(Context context) {
              super(context);
@@ -90,7 +92,7 @@ public class GameView extends SurfaceView {
              analogo=BitmapFactory.decodeResource(getResources(), R.drawable.anologo_1);
              botonA=BitmapFactory.decodeResource(getResources(), R.drawable.boton_a);
              botonB=BitmapFactory.decodeResource(getResources(), R.drawable.boton_b);
-             fondo = BitmapFactory.decodeResource(getResources(), R.drawable.namek);
+             fondo = BitmapFactory.decodeResource(getResources(), R.drawable.tierra);
          
               
        }
@@ -133,7 +135,7 @@ public class GameView extends SurfaceView {
              x = x + xSpeed;
              
              canvas.drawColor(Color.BLACK);
-             canvas.drawBitmap(fondo, 0 , 0, null);
+             canvas.drawBitmap(fondo, xFondo , yFondo, null);
              canvas.drawBitmap(analogo, getWidth() - analogo.getWidth() , getHeight()- analogo.getHeight(), null);
              canvas.drawBitmap(bmp, x , y, null);
              canvas.drawBitmap(botonA, (getWidth()-getWidth()+100) - botonA.getWidth() , getHeight()- botonA.getHeight(), null);
@@ -194,6 +196,7 @@ private void processMovement(float x1, float y1, float x2, float y2) {
         // move Left
         //setSpriteState(1);
         //x =0;
+            xFondo=+5;
             xSpeed = -10;  
             bmp = BitmapFactory.decodeResource(getResources(), R.drawable.c3);
             analogo=BitmapFactory.decodeResource(getResources(), R.drawable.anologo_left);
@@ -203,6 +206,7 @@ private void processMovement(float x1, float y1, float x2, float y2) {
         //Log.i("touch", "right");
         // move right
         xSpeed = 10;
+        xFondo=-5;
         bmp = BitmapFactory.decodeResource(getResources(), R.drawable.c2);
         analogo=BitmapFactory.decodeResource(getResources(), R.drawable.anologo_rigth);
         //setSpriteState(2);
@@ -211,13 +215,15 @@ private void processMovement(float x1, float y1, float x2, float y2) {
         // move down
         //setSpriteState(4);
         analogo=BitmapFactory.decodeResource(getResources(), R.drawable.anologo_down);
-        ySpeed=+5;
+        ySpeed=+10;
+        yFondo=-5;
     } else if (y2 < y1 && (Math.abs(y2 - y1) > Math.abs(x2 - x1))) {
         //Log.i("touch", "up");
         
         // move up
         analogo=BitmapFactory.decodeResource(getResources(), R.drawable.anologo_up);
-        ySpeed=-5;
+        ySpeed=-10;
+        yFondo=+5;
         //setSpriteState(3);
     } else if (x1==x2 && y1==y2){
         //fire();
