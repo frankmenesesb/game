@@ -46,6 +46,7 @@ public class GameView extends SurfaceView {
        private int yBoton=10;
        private int xFondo=-20;
        private int yFondo=-20;
+       private Bitmap arbolito;
       
        public GameView(Context context) {
              super(context);
@@ -93,7 +94,8 @@ public class GameView extends SurfaceView {
              botonA=BitmapFactory.decodeResource(getResources(), R.drawable.boton_a);
              botonB=BitmapFactory.decodeResource(getResources(), R.drawable.boton_b);
              fondo = BitmapFactory.decodeResource(getResources(), R.drawable.namek);
-         
+             arbolito = BitmapFactory.decodeResource(getResources(), R.drawable.arbolillo);
+             
               
        }
 
@@ -136,6 +138,7 @@ public class GameView extends SurfaceView {
              
              canvas.drawColor(Color.BLACK);
              canvas.drawBitmap(fondo, xFondo , yFondo, null);
+             canvas.drawBitmap(arbolito, 20 , 20, null);
              canvas.drawBitmap(analogo, getWidth() - analogo.getWidth() , getHeight()- analogo.getHeight(), null);
              canvas.drawBitmap(bmp, x , y, null);
              canvas.drawBitmap(botonA, (getWidth()-getWidth()+100) - botonA.getWidth() , getHeight()- botonA.getHeight(), null);
