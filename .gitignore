@@ -215,3 +215,4 @@ pip-log.txt
 .mr.developer.cfg
 /Game/gen/
 /Game/nbandroid/
+Game/src/com/valefrasoftware/GameLoopThread.java
