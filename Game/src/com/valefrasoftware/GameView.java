@@ -47,6 +47,7 @@ public class GameView extends SurfaceView {
        private int xFondo=-20;
        private int yFondo=-20;
        private Bitmap arbolito;
+       boolean caminando;
       
        public GameView(Context context) {
              super(context);
@@ -89,11 +90,12 @@ public class GameView extends SurfaceView {
              
              
              //dibujo inicial
-             bmp = BitmapFactory.decodeResource(getResources(), R.drawable.c1);
+             //bmp = BitmapFactory.decodeResource(getResources(), R.drawable.c1);}
+             bmp = BitmapFactory.decodeResource(getResources(), R.drawable.inicio);
              analogo=BitmapFactory.decodeResource(getResources(), R.drawable.anologo_1);
              botonA=BitmapFactory.decodeResource(getResources(), R.drawable.boton_a);
              botonB=BitmapFactory.decodeResource(getResources(), R.drawable.boton_b);
-             fondo = BitmapFactory.decodeResource(getResources(), R.drawable.namek);
+             fondo = BitmapFactory.decodeResource(getResources(), R.drawable.basefondo);
              arbolito = BitmapFactory.decodeResource(getResources(), R.drawable.arbolillo);
              
               
@@ -112,24 +114,43 @@ public class GameView extends SurfaceView {
 //                    xSpeed = 5;
 //             }
            
-           if(intro==1){
-               bmp = BitmapFactory.decodeResource(getResources(), R.drawable.tran_1);      
-             }
-             if(intro==2){
-               bmp = BitmapFactory.decodeResource(getResources(), R.drawable.tran2);   
-             }
-             if(intro==3){
-               bmp = BitmapFactory.decodeResource(getResources(), R.drawable.tran_3);   
-             }
-             if(intro==4){
-              bmp = BitmapFactory.decodeResource(getResources(), R.drawable.tran_4);    
-             }
-             if(intro==5){
-              bmp = BitmapFactory.decodeResource(getResources(), R.drawable.tran_5);   
-             }
-             if(intro==6){
-              bmp = BitmapFactory.decodeResource(getResources(), R.drawable.tran_6);   
-             }
+//           if(intro==1){
+//               bmp = BitmapFactory.decodeResource(getResources(), R.drawable.tran_1);      
+//             }
+//             if(intro==2){
+//               bmp = BitmapFactory.decodeResource(getResources(), R.drawable.tran2);   
+//             }
+//             if(intro==3){
+//               bmp = BitmapFactory.decodeResource(getResources(), R.drawable.tran_3);   
+//             }
+//             if(intro==4){
+//              bmp = BitmapFactory.decodeResource(getResources(), R.drawable.tran_4);    
+//             }
+//             if(intro==5){
+//              bmp = BitmapFactory.decodeResource(getResources(), R.drawable.tran_5);   
+//             }
+//             if(intro==6){
+//              bmp = BitmapFactory.decodeResource(getResources(), R.drawable.tran_6);   
+//             }
+           
+           if(caminando){
+               contador++;
+           }
+           
+           if (contador==1){
+        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.down_left);
+        }
+        if (contador==2){
+        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.down_right);
+        }
+        
+        
+        
+        if (contador==2){
+            contador=0;
+        }
+           
+           
              
              intro++;
            
@@ -149,11 +170,11 @@ public class GameView extends SurfaceView {
              //bmp = BitmapFactory.decodeResource(getResources(), R.drawable.c1);
              analogo=BitmapFactory.decodeResource(getResources(), R.drawable.anologo_1);
              botonA=BitmapFactory.decodeResource(getResources(), R.drawable.boton_a);
-             if(intro>6){
-             bmp = BitmapFactory.decodeResource(getResources(), R.drawable.c1);    
-             }
+//             if(intro>6){
+//             bmp = BitmapFactory.decodeResource(getResources(), R.drawable.c1);    
+//             }
              
-             
+             bmp = BitmapFactory.decodeResource(getResources(), R.drawable.inicio);
              // el if para la imagen inicial
              
              
@@ -192,6 +213,8 @@ public class GameView extends SurfaceView {
 }
 
 private void processMovement(float x1, float y1, float x2, float y2) {
+    caminando=false;
+    int contador=0;
     if((x2>getWidth() - analogo.getWidth() && x2<getWidth()) && (y2>getHeight()- analogo.getHeight()) && y2<getHeight()){
     ///
     if (x2 < x1 && (Math.abs(y2 - y1) < Math.abs(x2 - x1))) {
@@ -201,7 +224,7 @@ private void processMovement(float x1, float y1, float x2, float y2) {
         //x =0;
             //xFondo=+15;
             xSpeed = -10;  
-            bmp = BitmapFactory.decodeResource(getResources(), R.drawable.c3);
+            //bmp = BitmapFactory.decodeResource(getResources(), R.drawable.c3);
             analogo=BitmapFactory.decodeResource(getResources(), R.drawable.anologo_left);
             
             
@@ -210,13 +233,26 @@ private void processMovement(float x1, float y1, float x2, float y2) {
         // move right
         xSpeed = 10;
         //xFondo=-15;
-        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.c2);
+        //bmp = BitmapFactory.decodeResource(getResources(), R.drawable.c2);
         analogo=BitmapFactory.decodeResource(getResources(), R.drawable.anologo_rigth);
         //setSpriteState(2);
     } else if (y2 > y1 && (Math.abs(y2 - y1) > Math.abs(x2 - x1))) {
         //Log.i("touch", "down");
         // move down
         //setSpriteState(4);
+//        if (contador==0){
+//        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.down_left);
+//        }
+//        if (contador==1){
+//        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.down_right);
+//        }
+//        
+//        contador++;
+//        
+//        if (contador==1){
+//            contador=0;
+//        }
+        caminando=true;
         analogo=BitmapFactory.decodeResource(getResources(), R.drawable.anologo_down);
         ySpeed=+10;
         //yFondo=-5;
